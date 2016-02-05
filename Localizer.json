@@ -1,3 +1,17 @@
 {
-
+    "K_HELLO": {
+        "de": "Hallo",
+        "en": "Hello",
+        "fr": "Salut"
+    },
+    "K_GOODBYE": {
+        "de": "Auf Wiedersehen!",
+        "en": "Goodbye!",
+        "fr": "Au revoir!"
+    },
+    "K_OPEN": {
+        "de": "öffnen",
+        "en": "open",
+        "fr": "ouvrir"
+    }
 }
