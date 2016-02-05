@@ -12,6 +12,8 @@
 		1FC29E8F1C64F12C00153B8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC29E8D1C64F12C00153B8C /* Main.storyboard */; };
 		1FC29E911C64F12C00153B8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FC29E901C64F12C00153B8C /* Assets.xcassets */; };
 		1FC29E941C64F12C00153B8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FC29E921C64F12C00153B8C /* LaunchScreen.storyboard */; };
+		1FC29E9C1C64F16C00153B8C /* FELocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC29E9B1C64F16C00153B8C /* FELocalizer.swift */; };
+		1FC29E9E1C64F1A500153B8C /* Localizer.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FC29E9D1C64F1A500153B8C /* Localizer.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		1FC29E901C64F12C00153B8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FC29E931C64F12C00153B8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FC29E951C64F12C00153B8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FC29E9B1C64F16C00153B8C /* FELocalizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FELocalizer.swift; sourceTree = SOURCE_ROOT; };
+		1FC29E9D1C64F1A500153B8C /* Localizer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Localizer.json; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				1FC29E891C64F12C00153B8C /* AppDelegate.swift */,
 				1FC29E8B1C64F12C00153B8C /* ViewController.swift */,
+				1FC29E9B1C64F16C00153B8C /* FELocalizer.swift */,
+				1FC29E9D1C64F1A500153B8C /* Localizer.json */,
 				1FC29E8D1C64F12C00153B8C /* Main.storyboard */,
 				1FC29E901C64F12C00153B8C /* Assets.xcassets */,
 				1FC29E921C64F12C00153B8C /* LaunchScreen.storyboard */,
@@ -125,6 +131,7 @@
 				1FC29E941C64F12C00153B8C /* LaunchScreen.storyboard in Resources */,
 				1FC29E911C64F12C00153B8C /* Assets.xcassets in Resources */,
 				1FC29E8F1C64F12C00153B8C /* Main.storyboard in Resources */,
+				1FC29E9E1C64F1A500153B8C /* Localizer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FC29E9C1C64F16C00153B8C /* FELocalizer.swift in Sources */,
 				1FC29E8C1C64F12C00153B8C /* ViewController.swift in Sources */,
 				1FC29E8A1C64F12C00153B8C /* AppDelegate.swift in Sources */,
 			);
