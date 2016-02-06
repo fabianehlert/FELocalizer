@@ -49,11 +49,15 @@ class FELocalizer {
                         return l
                     }
                 }
+                if let l = object["en"] {
+                    if let l: String = l as? String {
+                        return l
+                    }
+                }
             }
         }
         return ""
     }
-    
     /// Returns the ISO only code (2 or 3 character) of the currently preferred system language
     func languageISOCode() -> String {
         if let language = NSLocale.preferredLanguages().first {
