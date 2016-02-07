@@ -9,7 +9,10 @@
 This project replaces Xcode's `Localizable.strings`
 
 ## Future
-* The idea is to create a desktop application which helps managing all your localized strings easily and automatically generates and updates the required JSON file for you.
+* Desktop application
+  * managing all localized strings
+  * automatic generation of the required JSON file
+  * xliff export and import
 * Differentiate between Numerus and Genus (already finished preparation)
 
 ## Setup
