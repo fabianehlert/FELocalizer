@@ -15,6 +15,18 @@ extension String {
     }
 }
 
+enum FELocalizerNumerus {
+    case Default
+    case Singular
+    case Plural
+}
+
+enum FELocalizerGenus {
+    case Default
+    case Female
+    case Male
+}
+
 class FELocalizer {
 
     static let shared = FELocalizer()
@@ -33,29 +45,31 @@ class FELocalizer {
     }
     
     /// Returns a localized String
-    func localized(key: String, language: String! = nil) -> String {
+    func localized(key: String, numerus: FELocalizerNumerus = .Default, genus: FELocalizerGenus = .Default, language: String! = nil) -> String {
+        print("Searching for : \(key) with num : \(numerus) and genus : \(genus)")
         if let _ = language {
-            return string(key, language: language)
+            return string(key, numerus: numerus, genus: genus, language: language)
         } else {
-            return string(key, language: languageISOCode())
+            return string(key, numerus: numerus, genus: genus, language: languageISOCode())
         }
     }
     
-    private func string(key: String, language: String) -> String {
-        if let _ = json {
-            if let object = json[key] {
-                if let l = object[languageISOCode()] {
-                    if let l: String = l as? String {
-                        return l
-                    }
-                }
-                if let l = object["en"] {
-                    if let l: String = l as? String {
-                        return l
-                    }
-                }
+    private func string(key: String, numerus: FELocalizerNumerus, genus: FELocalizerGenus, language: String) -> String {
+        guard let _ = json else { return "" }
+        guard let object = json[key] else { return "" }
+        
+        if let o = object[languageISOCode()] {
+            if let o = o {
+                if let l: String = o["default"] as? String { return l }
             }
         }
+        
+        if let o = object["en"] {
+            if let o = o {
+                if let l: String = o["default"] as? String { return l }
+            }
+        }
+        
         return ""
     }
     

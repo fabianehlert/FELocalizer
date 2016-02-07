@@ -1,0 +1,17 @@
+clean: true
+version: 0.1
+
+module_name: FELocalizer
+author_name: Fabian Ehlert
+author_url: http://fabianehlert.com
+
+copyright: '© 2016 [Fabian Ehlert](http://fabianehlert.com)'
+
+swift_version: 2.1.1
+
+custom_categories:
+  - name: FELocalizer
+    children:
+    - FELocalizer
+    - FELocalizerNumerus
+    - FELocalizerGenus

@@ -1,17 +1,49 @@
 {
-    "K_HELLO": {
-        "de": "Hallo",
-        "en": "Hello",
-        "fr": "Salut"
+    "Hello": {
+        "de": {
+            "default": "Hallo"
+        },
+        "en": {
+            "default": "Hello"
+        },
+        "fr": {
+            "default": "Salut"
+        }
     },
-    "K_GOODBYE": {
-        "de": "Auf Wiedersehen!",
-        "en": "Goodbye!",
-        "fr": "Au revoir!"
+    "Goodbye": {
+        "de": {
+            "default": "Auf Wiedersehen!"
+        },
+        "en": {
+            "default": "Goodbye!"
+        },
+        "fr": {
+            "default": "Au revoir!"
+        }
     },
-    "K_OPEN": {
-        "de": "öffnen",
-        "en": "open",
-        "fr": "ouvrir"
+    "Open": {
+        "de": {
+            "default": "öffnen"
+        },
+        "en": {
+            "default": "open"
+        },
+        "fr": {
+            "default": "ouvrir"
+        }
+    },
+    "FlightAttendant": {
+        "de": {
+            "default": "Flugbegleiter",
+            "femaleSingular": "Flugbegleiterin",
+            "femalePlural": "Flugbegleiterinnen",
+            "maleSingular": "Flugbegleiter",
+            "malePlural": "Flugbegleiter"
+        },
+        "en": {
+            "default": "Flight attendant",
+            "anySingular": "Flight attendant",
+            "anyPlural": "Flight attendants"
+        }
     }
 }

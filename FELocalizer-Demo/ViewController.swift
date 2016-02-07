@@ -16,13 +16,36 @@ class ViewController: UIViewController {
         if let file = NSBundle.mainBundle().pathForResource("Localizer", ofType: "json") {
             FELocalizer.shared.setFilePath(file)
             
-            let translation = FELocalizer.shared.localized("K_HELLO")
+            let translation = FELocalizer.shared.localized("Hello")
+            
             print("Translation : \(translation)")
         }
     }
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("-------")
+        print("Touches began")
+        print("-------")
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("Touches moved: \(touches.first?.locationInView(view))")
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("####")
+        print("Touches ended")
+        print("####")
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        print("*****")
+        print("Touches cancelled")
+        print("*****")
     }
 
 }

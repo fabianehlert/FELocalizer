@@ -294,6 +294,7 @@
 				1FC29E9A1C64F12C00153B8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
