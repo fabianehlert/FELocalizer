@@ -6,6 +6,11 @@
 [![Twitter: @fabianehlert](https://img.shields.io/badge/twitter-fabianehlert-blue.svg)](https://twitter.com/fabianehlert)
 
 ## About
+This project replaces Xcode's `Localizable.strings`
+
+## Future
+* The idea is to create a desktop application which helps managing all your localized strings easily and automatically generates and updates the required JSON file for you.
+* Differentiate between Numerus and Genus (already finished preparation)
 
 ## Setup
 1. Copy the `FELocalizer.swift` file into your project
@@ -20,6 +25,22 @@ if let file = NSBundle.mainBundle().pathForResource("Localizer", ofType: "json")
 
 ## Usage
 ### JSON structure
+All your localization data will be stored in the previously created `Localizer.json` file. In order to work properly with `FELocalizer` you have to follow this structure:
+```json
+{
+  "Hello": {
+        "de": {
+            "default": "Hallo"
+        },
+        "en": {
+            "default": "Hello"
+        },
+        "fr": {
+            "default": "Salut"
+        }
+    }
+}
+```
 
 ### Obtaining a localized string
 Simply call `localized("key")` on the shared instance of FELocalizer to get a localized string for the given key for the current system language.
