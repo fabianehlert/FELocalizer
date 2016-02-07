@@ -26,6 +26,12 @@ if let file = NSBundle.mainBundle().pathForResource("Localizer", ofType: "json")
 ## Usage
 ### JSON structure
 All your localization data will be stored in the previously created `Localizer.json` file. In order to work properly with `FELocalizer` you have to follow this structure:
+>`Hello` is the key of an object
+
+>`de` represents the object for the german translation
+
+>`default` contains the default translation value
+
 ```json
 {
   "Hello": {
