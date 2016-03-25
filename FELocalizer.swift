@@ -58,7 +58,7 @@ class FELocalizer {
         guard let _ = json else { return "" }
         guard let object = json[key] else { return "" }
         
-        if let o = object[languageISOCode()] {
+        if let o = object[language] {
             if let o = o {
                 if let l: String = o["default"] as? String { return l }
             }
@@ -76,6 +76,7 @@ class FELocalizer {
     /// Returns the ISO only code (2 or 3 character) of the currently preferred system language
     func languageISOCode() -> String {
         if let language = NSLocale.preferredLanguages().first {
+            print("Lang ISO code : \(NSLocale.preferredLanguages())")
             return language.firstComponentTillSeparator()
         }
         return "en"
