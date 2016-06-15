@@ -10,21 +10,21 @@ import Foundation
 
 extension String {
     func firstComponentTillSeparator() -> String {
-        if let x = self.componentsSeparatedByString("-").first { return x }
+        if let x = self.components(separatedBy: "-").first { return x }
         return self
     }
 }
 
 enum FELocalizerNumerus {
-    case Default
-    case Singular
-    case Plural
+    case `default`
+    case singular
+    case plural
 }
 
 enum FELocalizerGenus {
-    case Default
-    case Female
-    case Male
+    case `default`
+    case female
+    case male
 }
 
 class FELocalizer {
@@ -33,10 +33,10 @@ class FELocalizer {
     private var json: [String: AnyObject]!
     
     /// Sets the path for the JSON file that contains the translation strings
-    func setFilePath(path: String) {
-        if let jsonData = NSData(contentsOfFile: path) {
+    func setFilePath(_ path: String) {
+        if let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             do {
-                json = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! [String: AnyObject]
+                json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: AnyObject]
             } catch let error {
                 print(error)
             }
@@ -45,7 +45,7 @@ class FELocalizer {
     }
     
     /// Returns a localized String
-    func localized(key: String, numerus: FELocalizerNumerus = .Default, genus: FELocalizerGenus = .Default, language: String! = nil) -> String {
+    func localized(_ key: String, numerus: FELocalizerNumerus = .default, genus: FELocalizerGenus = .default, language: String! = nil) -> String {
         print("Searching for : \(key) with num : \(numerus) and genus : \(genus)")
         if let _ = language {
             return string(key, numerus: numerus, genus: genus, language: language)
@@ -54,7 +54,7 @@ class FELocalizer {
         }
     }
     
-    private func string(key: String, numerus: FELocalizerNumerus, genus: FELocalizerGenus, language: String) -> String {
+    private func string(_ key: String, numerus: FELocalizerNumerus, genus: FELocalizerGenus, language: String) -> String {
         guard let _ = json else { return "" }
         guard let object = json[key] else { return "" }
         
@@ -75,8 +75,8 @@ class FELocalizer {
     
     /// Returns the ISO only code (2 or 3 character) of the currently preferred system language
     func languageISOCode() -> String {
-        if let language = NSLocale.preferredLanguages().first {
-            print("Lang ISO code : \(NSLocale.preferredLanguages())")
+        if let language = Locale.preferredLanguages().first {
+            print("Lang ISO code : \(Locale.preferredLanguages())")
             return language.firstComponentTillSeparator()
         }
         return "en"

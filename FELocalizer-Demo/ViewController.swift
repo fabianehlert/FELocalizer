@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let file = NSBundle.mainBundle().pathForResource("Localizer", ofType: "json") {
+        if let file = Bundle.main().pathForResource("Localizer", ofType: "json") {
             FELocalizer.shared.setFilePath(file)
             
             let translation = FELocalizer.shared.localized("Hello")
