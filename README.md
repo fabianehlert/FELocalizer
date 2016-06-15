@@ -7,6 +7,7 @@
 
 ## About
 This project replaces Xcode's `Localizable.strings`
+Still a WIP
 
 ## Future
 * Desktop application
