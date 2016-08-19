@@ -57,7 +57,7 @@ class FELocalizer {
     }
     
     /// Sets the path for the JSON file that contains the translation strings
-    func setFilePath(_ path: String) throws {
+    private func setFilePath(_ path: String) throws {
         if let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             do {
                 json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]
