@@ -15,71 +15,89 @@ extension String {
     }
 }
 
-enum FELocalizerNumerus {
+enum Numerus {
     case `default`
     case singular
     case plural
 }
 
-enum FELocalizerGenus {
+enum Genus {
     case `default`
     case female
     case male
 }
 
-class FELocalizer {
+enum FELocalizerError: Error {
+    case FileSetupFailed
+    case FileParsingFailed
+}
 
-    static let shared = FELocalizer()
-    private var json: [String: AnyObject]!
+extension FELocalizerError: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .FileSetupFailed:
+            return "Failed to get JSON file for FELocalizer."
+        case .FileParsingFailed:
+            return "Failed to parse JSON file for FELocalizer."
+        }
+    }
+}
+
+class FELocalizer {
+    
+    var json: [String: AnyObject]?
+    
+    /// Initialize
+    init(path: String) throws {
+        do {
+            try setFilePath(path)
+        } catch let error {
+            throw error
+        }
+    }
     
     /// Sets the path for the JSON file that contains the translation strings
-    func setFilePath(_ path: String) {
+    func setFilePath(_ path: String) throws {
         if let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             do {
-                json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: AnyObject]
+                json = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: AnyObject]
             } catch let error {
-                print(error)
+                print("error in setFilePath: \(error)")
+                throw FELocalizerError.FileParsingFailed
             }
+        } else {
+            throw FELocalizerError.FileSetupFailed
         }
-
     }
     
     /// Returns a localized String
-    func localized(_ key: String, numerus: FELocalizerNumerus = .default, genus: FELocalizerGenus = .default, language: String! = nil) -> String {
+    func localized(_ key: String, numerus: Numerus = .default, genus: Genus = .default, language: String! = nil) -> String? {
         print("Searching for : \(key) with num : \(numerus) and genus : \(genus)")
         if let _ = language {
             return string(key, numerus: numerus, genus: genus, language: language)
         } else {
-            return string(key, numerus: numerus, genus: genus, language: languageISOCode())
+            guard let defaultLanguage = defaultLanguage() else { return nil }
+            return string(key, numerus: numerus, genus: genus, language: defaultLanguage)
         }
     }
     
-    private func string(_ key: String, numerus: FELocalizerNumerus, genus: FELocalizerGenus, language: String) -> String {
-        guard let _ = json else { return "" }
-        guard let object = json[key] else { return "" }
+    private func string(_ key: String, numerus: Numerus, genus: Genus, language: String) -> String? {
+        guard let json = json, let object = json[key], let o = object[language] else { return nil }
         
-        if let o = object[language] {
-            if let o = o {
-                if let l: String = o["default"] as? String { return l }
-            }
+        if let o = o,
+            let l: String = o["default"] as? String {
+            return l
         }
         
-        if let o = object["en"] {
-            if let o = o {
-                if let l: String = o["default"] as? String { return l }
-            }
-        }
-        
-        return ""
+        return nil
     }
     
     /// Returns the ISO only code (2 or 3 character) of the currently preferred system language
-    func languageISOCode() -> String {
-        if let language = Locale.preferredLanguages().first {
-            print("Lang ISO code : \(Locale.preferredLanguages())")
+    func defaultLanguage() -> String? {
+        if let language = Locale.preferredLanguages.first {
             return language.firstComponentTillSeparator()
         }
-        return "en"
+        return nil
     }
     
 }

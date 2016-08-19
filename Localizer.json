@@ -1,8 +1,5 @@
 {
     "Hello": {
-        "de": {
-            "default": "Hallo"
-        },
         "en": {
             "default": "Hello"
         },
