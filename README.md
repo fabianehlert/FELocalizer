@@ -21,11 +21,15 @@ Still a WIP
 2. Create a JSON file (for example `Localizer.json`) which will contain your localized strings
 3. Tell `FELocalizer` which file to look for:
 ```swift
-if let file = NSBundle.mainBundle().pathForResource("Localizer", ofType: "json") {
-    FELocalizer.shared.setFilePath(file)
+if let file = Bundle.main.path(forResource: "Localizer", ofType: "json") {
+    do {
+        let localizer = try FELocalizer(path: file)
+        ...
+    } catch let error {
+        print(error)
+    }
 }
 ```
->This also initializes a shared instance of FELocalizer which can be used across your app
 
 ## Usage
 ### JSON structure
@@ -53,14 +57,14 @@ All your localization data will be stored in the previously created `Localizer.j
 ```
 
 ### Obtaining a localized string
-Simply call `localized("key")` on the shared instance of FELocalizer to get a localized string for the given key for the current system language.
+Simply call `localized("key")` on FELocalizer to get a localized string for the given key for the current system language. Returns an Optional.
 ```swift
-let translation = FELocalizer.shared.localized("Hello")
+let translation = FELocalizer.localized("Hello")
 ```
 ### Obtaining a localized string for a specific language
-Call `localized("key", language: "en")` on the shared instance of FELocalizer to get a localized string for the given key for the specified language.
+Call `localized("key", language: "en")` on FELocalizer to get a localized string for the given key for the specified language.
 >Note: The language string must be in [ISO 639-1](http://www.loc.gov/standards/iso639-2/php/code_list.php) format (for example "en" for English, "de" for German)
 
 ```swift
-let translation = FELocalizer.shared.localized("Hello", language: "en")
+let translation = FELocalizer.localized("Hello", language: "en")
 ```
