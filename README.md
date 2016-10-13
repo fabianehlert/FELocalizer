@@ -10,11 +10,12 @@ This project replaces Xcode's `Localizable.strings`
 Still a WIP
 
 ## Future
-* Desktop application
+* Desktop/Web application
   * managing all localized strings
   * automatic generation of the required JSON file
-  * xliff export and import
+  * xliff export and import (?)  
 * Differentiate between Numerus and Genus (already finished preparation)
+* generate a Swift file that contains variables holding the localized strings
 
 ## Setup
 1. Copy the `FELocalizer.swift` file into your project
