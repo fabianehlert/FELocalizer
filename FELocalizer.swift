@@ -81,14 +81,8 @@ class FELocalizer {
     }
     
     private func string(_ key: String, numerus: Numerus, genus: Genus, language: String) -> String? {
-        guard let json = json, let object = json[key], let o = object[language] else { return nil }
-        
-        if let o = o,
-            let l: String = o["default"] as? String {
-            return l
-        }
-        
-        return nil
+        guard let json = json, let object = json[key], let lang = object[language] as? [String: String] else { return nil }
+        return lang["default"]
     }
     
     /// Returns the ISO only code (2 or 3 character) of the currently preferred system language
